@@ -7,20 +7,24 @@ import { ListaDeCompraService } from './service/lista-de-compra.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'app-lista-de-compras';
 
-  listaDeCompra!: Array<Item> // Item foi definido pela interface.
+  listaDeCompra!: Array<Item>; // Item foi definido pela interface.
+  itemParaSerEditado!: Item;
+
 
   constructor(
     private listaService: ListaDeCompraService  // Declarado um atributo lista Service do tipo ListaDeCompraService para podermos hookar o método necessário getListaDeCompra.
-  )
-
-  { }
+  ) { }
 
   ngOnInit(): void {
     this.listaDeCompra = this.listaService.getListaDeCompra();
     return console.log(this.listaDeCompra);
+  }
+
+  editarItem(item: Item) {
+    this.itemParaSerEditado = item;
   }
 
 }
